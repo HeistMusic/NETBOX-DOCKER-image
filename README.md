@@ -34,15 +34,10 @@ The core solution is implemented in:
 
 scripts/device_inventory_report.py
 
-sql
-Copiar código
 
 Generated reports are stored in:
 
 reports/
-
-yaml
-Copiar código
 
 ---
 
