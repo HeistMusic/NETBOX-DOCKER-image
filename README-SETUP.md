@@ -1,8 +1,8 @@
-# NETBOX-DOCKER 
+# NETBOX-DOCKER-image
 
 ## NETBOX AND DOCKER SETUP
 
-Para realizar esta prueba tecnica he decidido usar  [the official NetBox Docker Image](https://github.com/netbox-community/netbox-docker?tab=readme-ov-file) "the official NetBox Docker Image" y el [docker-desktop](https://www.docker.com/products/docker-desktop/) app(Windows) 
+Para realizar esta prueba tecnica he decidido usar  [the official NetBox Docker Image](https://github.com/netbox-community/netbox-docker?tab=readme-ov-file) y el [docker-desktop](https://www.docker.com/products/docker-desktop/) app(Windows) 
 
 ### Quickstart
 To get NetBox Docker up and running run the following commands.
@@ -30,7 +30,6 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 ├── configuration/                # NetBox configuration files
 ├── docker/                       # Docker-related helper files
 ├── env/                          # Environment variable templates
-├── media/                        # NetBox media files (uploads)
 ├── test-configuration/           # Test and validation configuration
 ├── .dockerignore
 ├── .editorconfig
@@ -43,9 +42,9 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 ├── actionlint.yml
 ├── build-latest.sh
 ├── build.sh
-├── docker-compose.yml
 ├── docker-compose.override.yml   # Local overrides (volumes, custom build)
 ├── docker-compose.override.yml.example
+├── docker-compose.test.override.yml
 ├── docker-compose.test.yml
 ├── docker-compose.yml            # 
 ├── Dockerfile                    # Custom NetBox image extension
@@ -53,6 +52,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 ├── MAINTAINERS.md
 ├── PRINCIPALS.md
 ├── pyproject.toml
+├── README-SETUP.md               # Setup documentation
 ├── README.md                     # Project documentation
 ├── release.sh
 ├── renovate.json
