@@ -70,7 +70,7 @@ No database registration or additional configuration is required.
 - Output Field: YAML-formatted device data
 - File Output: PDF report generated with a timestamped filename in:
 ```reports/device_inventory_report_YYYYMMDD_HHMMSS.pdf```
-PDF files are persisted using a Docker-mounted volume.
+- PDF files are persisted using a Docker-mounted volume.
 
 ## Exercise 2 – NetBox API Device Count Script
 
@@ -88,6 +88,7 @@ The script interacts exclusively with the NetBox API and does not depend on NetB
 ### API Endpoint Used
 
 ```GET /api/dcim/devices/```
+
 Optional query parameter:```status=<device_status>```
 
 ### Script Location
