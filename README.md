@@ -59,7 +59,7 @@ No database registration or additional configuration is required.
 3. Navigate to:
 ```Admin → Extras → Scripts```
 4. Select Device Inventory Report
-5. Choose:
+5. Choose: 
 - Device Status (required)
 - Site or Rack (at least one required)
 6. Execute the script
@@ -69,9 +69,7 @@ No database registration or additional configuration is required.
 - UI Log: One log entry per processed device
 - Output Field: YAML-formatted device data
 - File Output: PDF report generated with a timestamped filename in:
-```
-reports/device_inventory_report_YYYYMMDD_HHMMSS.pdf
-```
+```reports/device_inventory_report_YYYYMMDD_HHMMSS.pdf```
 PDF files are persisted using a Docker-mounted volume.
 
 ## Exercise 2 – NetBox API Device Count Script
@@ -88,17 +86,13 @@ The script supports:
 The script interacts exclusively with the NetBox API and does not depend on NetBox internals.
 
 ### API Endpoint Used
-```
-GET /api/dcim/devices/
-```
-Optional query parameter:
 
-- status=<device_status>
+```GET /api/dcim/devices/```
+Optional query parameter:```status=<device_status>```
 
 ### Script Location
-```
-api/device_count.py
-```
+
+```api/device_count.py```
 
 ### How to Execute Exercise 2
 
