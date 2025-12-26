@@ -57,9 +57,7 @@ No database registration or additional configuration is required.
 1. Start NetBox using Docker Compose
 2. Log in to the NetBox UI
 3. Navigate to:
-```
-Admin → Extras → Scripts
-```
+```Admin → Extras → Scripts```
 4. Select Device Inventory Report
 5. Choose:
 - Device Status (required)
