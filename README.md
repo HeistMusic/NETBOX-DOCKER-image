@@ -15,6 +15,21 @@ The script demonstrates:
 - Logging execution details in the NetBox UI
 - Optional export of results to a PDF file
 
+### Initial Data Setup
+
+For the purpose of this exercise, initial data (Sites, Racks, Devices and admin user)
+is created manually in the NetBox UI after deployment.
+
+The dataset used for testing follows the exercise requirements:
+
+- 2 Sites
+- 4 Racks (2 per Site)
+- 20 Devices (10 per Site)
+- One empty Rack per Site
+- Status assigned to each Device
+
+This approach avoids coupling the repository to a specific database state and ensures reproducibility across environments.
+
 ### Requirements Covered
 
 Filters
@@ -69,7 +84,9 @@ No database registration or additional configuration is required.
 - UI Log: One log entry per processed device
 - Output Field: YAML-formatted device data
 - File Output: PDF report generated with a timestamped filename in:
-```reports/device_inventory_report_YYYYMMDD_HHMMSS.pdf```
+```
+reports/device_inventory_report_YYYYMMDD_HHMMSS.pdf
+```
 - PDF files are persisted using a Docker-mounted volume.
 
 ## Exercise 2 – NetBox API Device Count Script
@@ -85,22 +102,26 @@ The script supports:
 
 The script interacts exclusively with the NetBox API and does not depend on NetBox internals.
 
-### API Endpoint Used
-
-```GET /api/dcim/devices/```
-
-Optional query parameter:```status=<device_status>```
-
-### Script Location
-
-```api/device_count.py```
-
 ### How to Execute Exercise 2
 
 Prerequisites
 
 - NetBox running and accessible
-- A valid NetBox API token
+- A valid NetBox API token: ```http://localhost:8000/user/api-tokens/```
+
+### API Endpoint Used
+
+```
+GET /api/dcim/devices/
+```
+
+Optional query parameter:```status=<device_status>```
+
+### Script Location
+
+```
+api/device_count.py
+```
 
 ### Count devices with a specific status
 ```
@@ -125,7 +146,6 @@ Example output:
 Device count by status:
   active: 12
   offline: 6
-  planned: 2
 ```
 
 ### Error Handling
@@ -133,21 +153,6 @@ Device count by status:
 - HTTP errors are detected and reported
 - Invalid tokens or unreachable endpoints produce clear error messages
 - API pagination is handled automatically
-
-### Initial Data Setup
-
-For the purpose of this exercise, initial data (Sites, Racks, Devices and admin user)
-is created manually in the NetBox UI after deployment.
-
-The dataset used for testing follows the exercise requirements:
-
-- 2 Sites
-- 4 Racks (2 per Site)
-- 20 Devices (10 per Site)
-- One empty Rack per Site
-- Status assigned to each Device
-
-This approach avoids coupling the repository to a specific database state and ensures reproducibility across environments.
 
 ### Notes
 
