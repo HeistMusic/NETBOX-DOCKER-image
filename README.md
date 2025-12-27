@@ -9,29 +9,35 @@ No system-wide installation of Docker Engine or Docker Compose is required, as D
 
 ### Prerequisites
 
-- [Docker-desktop](https://www.docker.com/products/docker-desktop/) (Windows / macOS / Linux)
+- Docker-desktop [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/) (Windows / macOS / Linux)
 - Git
 
 ### Clone the Repository
 
 ```
-git clone https://github.com/HeistMusic/NETBOX-DOCKER-image.git NETBOX-DOCKER-image | cd NETBOX-DOCKER-image
+git clone https://github.com/HeistMusic/NETBOX-DOCKER-image.git NETBOX-DOCKER-image 
+cd NETBOX-DOCKER-image
 ```
 
 ### Start NetBox
 
 From the repository root, run:
 ```
-docker compose pull | docker compose build --no-cache | docker compose up -d
+docker compose pull
+docker compose up
 ```
 
 This will:
 
 - Pull the required NetBox images
-- Build the local image (if applicable)
 - Start NetBox and its dependencies (PostgreSQL, Redis)
 
-Once started, NetBox will be available at: [http://localhost:8000](http://localhost:8000)
+Note:
+On the first startup, the NetBox container may temporarily appear as "unhealthy"
+while database migrations and initialization tasks are being completed.
+This is expected behavior.
+
+Once started, NetBox will be available at: ```http://localhost:8000```
 
 ### Create Admin User
 
@@ -42,6 +48,7 @@ docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 Follow the prompts to set: ```Username``` , ```Email``` and ```Password```
 
 This user is required to access the NetBox UI and execute Custom Scripts.
+
 
 ### Notes
 
@@ -72,7 +79,7 @@ The dataset used for testing follows the exercise requirements:
 
 - 2 Sites
 - 4 Racks (2 per Site)
-- 20 Devices (10 per Site)
+- 20 Devices (10 per Site adding roll and device type)
 - One empty Rack per Site
 - Status assigned to each Device
 
@@ -112,17 +119,22 @@ Optional
 ```
 scripts/device_inventory_report.py
 ```
-The script is automatically loaded by NetBox from the configured SCRIPTS_ROOT.
-No database registration or additional configuration is required.
 
 ### How to Execute Exercise 1
 
 1. Start NetBox using Docker Compose
 2. Log in to the NetBox UI
-3. Navigate to: ```Admin → Extras → Scripts```
-4. Select Device Inventory Report
-5. Choose: ```Device Status (required) → Site or Rack (at least one required)```
-6. Execute the script
+3. Navigate to: ```http://localhost:8000/extras/scripts/```
+4. Add script and select ```device_inventory_report.py``` on ```scripts``` folder
+6. This step is required only the first time, or when Python dependencies change.
+From the repository root, run:
+```
+docker compose down
+docker compose build --no-cache
+docker compose up -d
+```
+7. Run the Script and Choose: ```Device Status (required) → Site or Rack (at least one required)```
+8. Execute the script
 
 ### Output of Exercise 1
 
