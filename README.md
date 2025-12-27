@@ -15,16 +15,14 @@ No system-wide installation of Docker Engine or Docker Compose is required, as D
 ### Clone the Repository
 
 ```
-git clone https://github.com/HeistMusic/NETBOX-DOCKER-image.git NETBOX-DOCKER-image
-cd <NETBOX-DOCKER-image>
+git clone https://github.com/HeistMusic/NETBOX-DOCKER-image.git NETBOX-DOCKER-image | cd NETBOX-DOCKER-image
 ```
 
 ### Start NetBox
 
 From the repository root, run:
 ```
-docker compose pull
-docker compose up 
+docker compose pull | docker compose build --no-cache | docker compose up -d
 ```
 
 This will:
