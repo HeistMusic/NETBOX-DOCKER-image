@@ -1,5 +1,55 @@
 # NetBox Custom Script – Technical Exercise
 
+## Setup
+
+### Environment
+
+This project uses the official NetBox Docker image and is intended to be run using Docker Desktop.
+No system-wide installation of Docker Engine or Docker Compose is required, as Docker Desktop already includes both.
+
+### Prerequisites
+
+- [Docker-desktop](https://www.docker.com/products/docker-desktop/) (Windows / macOS / Linux)
+- Git
+
+### Clone the Repository
+
+```
+git clone https://github.com/HeistMusic/NETBOX-DOCKER-image.git NETBOX-DOCKER-image
+cd <NETBOX-DOCKER-image>
+```
+
+### Start NetBox
+
+From the repository root, run:
+```
+docker compose pull
+docker compose up -d
+```
+
+This will:
+
+- Pull the required NetBox images
+- Build the local image (if applicable)
+- Start NetBox and its dependencies (PostgreSQL, Redis)
+
+Once started, NetBox will be available at: [http://localhost:8000](http://localhost:8000)
+
+### Create Admin User
+
+After the containers are running, create a NetBox administrator account:
+```
+docker compose exec netbox createsuperuser
+```
+Follow the prompts to set: ```Username``` , ```Email``` and ```Password```
+
+This user is required to access the NetBox UI and execute Custom Scripts.
+
+### Notes
+
+- Runtime data (database contents, users, devices) is not stored in the repository
+- Docker volumes are used for persistence during local execution
+
 ## Exercise 1 – NetBox Custom Script
 
 ### Description
@@ -109,6 +159,15 @@ Prerequisites
 - NetBox running and accessible
 - A valid NetBox API token: ```http://localhost:8000/user/api-tokens/```
 
+Dependencies
+
+- The API script requires the Python `requests` library.
+
+If not already installed, it can be installed using:
+```
+pip install requests
+```
+
 ### API Endpoint Used
 
 ```
@@ -125,10 +184,7 @@ api/device_count.py
 
 ### Count devices with a specific status
 ```
-python api/device_count.py \
-  --url http://localhost:8000 \
-  --token <API_TOKEN> \
-  --status active
+python api/device_count.py --url http://localhost:8000 --token <API_TOKEN> --status active
 ```
 Example output:
 ```
@@ -137,9 +193,7 @@ Devices with status 'active': 12
 
 ### Count devices grouped by status
 ```
-python api/device_count.py \
-  --url http://localhost:8000 \
-  --token <API_TOKEN>
+python api/device_count.py --url http://localhost:8000 --token <API_TOKEN>
 ```
 Example output:
 ```
