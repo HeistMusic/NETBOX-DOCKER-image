@@ -205,6 +205,19 @@ Device count by status:
 - Invalid tokens or unreachable endpoints produce clear error messages
 - API pagination is handled automatically
 
+### Testing
+
+Unit tests are implemented using Python's built-in ```unittest``` framework.
+
+API responses are simulated using ```unittest.mock```, allowing tests to run without
+requiring a running NetBox instance.
+
+Run tests using:
+
+```bash
+python -m unittest discover tests -v
+```
+
 ### Notes
 
 - Custom Scripts are loaded from the filesystem and are not stored in the database
