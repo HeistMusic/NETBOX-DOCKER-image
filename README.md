@@ -24,7 +24,7 @@ cd <NETBOX-DOCKER-image>
 From the repository root, run:
 ```
 docker compose pull
-docker compose up -d
+docker compose up 
 ```
 
 This will:
@@ -39,7 +39,7 @@ Once started, NetBox will be available at: [http://localhost:8000](http://localh
 
 After the containers are running, create a NetBox administrator account:
 ```
-docker compose exec netbox createsuperuser
+docker compose exec netbox /opt/netbox/netbox/manage.py createsuperuser
 ```
 Follow the prompts to set: ```Username``` , ```Email``` and ```Password```
 
