@@ -149,6 +149,19 @@ The script supports:
 
 The script interacts exclusively with the NetBox API and does not depend on NetBox internals.
 
+### Testing
+
+Unit tests are implemented using Python's built-in ```unittest``` framework.
+
+API responses are simulated using ```unittest.mock```, allowing tests to run without
+requiring a running NetBox instance.
+
+Run tests using:
+
+```
+python -m unittest discover tests -v
+```
+
 ### How to Execute Exercise 2
 
 Prerequisites
@@ -204,19 +217,6 @@ Device count by status:
 - HTTP errors are detected and reported
 - Invalid tokens or unreachable endpoints produce clear error messages
 - API pagination is handled automatically
-
-### Testing
-
-Unit tests are implemented using Python's built-in ```unittest``` framework.
-
-API responses are simulated using ```unittest.mock```, allowing tests to run without
-requiring a running NetBox instance.
-
-Run tests using:
-
-```bash
-python -m unittest discover tests -v
-```
 
 ### Notes
 
