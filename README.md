@@ -121,12 +121,9 @@ No database registration or additional configuration is required.
 
 1. Start NetBox using Docker Compose
 2. Log in to the NetBox UI
-3. Navigate to:
-```Admin → Extras → Scripts```
+3. Navigate to: ```Admin → Extras → Scripts```
 4. Select Device Inventory Report
-5. Choose: 
-- Device Status (required)
-- Site or Rack (at least one required)
+5. Choose: ```Device Status (required) → Site or Rack (at least one required)```
 6. Execute the script
 
 ### Output of Exercise 1
@@ -157,11 +154,11 @@ The script interacts exclusively with the NetBox API and does not depend on NetB
 Prerequisites
 
 - NetBox running and accessible
-- A valid NetBox API token: ```http://localhost:8000/user/api-tokens/```
+- A valid NetBox API token: [http://localhost:8000/user/api-tokens/](http://localhost:8000/user/api-tokens/)
 
 Dependencies
 
-- The API script requires the Python `requests` library.
+- The API script requires the Python ```requests``` library.
 
 If not already installed, it can be installed using:
 ```
@@ -199,7 +196,7 @@ Example output:
 ```
 Device count by status:
   active: 12
-  offline: 6
+  offline: 8
 ```
 
 ### Error Handling
