@@ -1,5 +1,9 @@
 services:
   netbox:
+    build: .
+    volumes:
+      - ./scripts:/opt/netbox/netbox/scripts:ro
+      - ./reports:/opt/netbox/netbox/reports_root:rw
     ports:
       - "127.0.0.1:8000:8080"
 
