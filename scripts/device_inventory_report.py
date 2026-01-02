@@ -17,7 +17,11 @@ class DeviceInventoryReport(Script):
     site = ObjectVar(model=Site, required=False)
     rack = ObjectVar(model=Rack, required=False)
     status = ChoiceVar(
-        choices=[("active", "Active"), ("offline", "Offline")],
+        choices=[
+            ("active", "Active"),
+            ("offline", "Offline"),
+            ("planned", "Planned"),
+        ],
         required=True
     )
     

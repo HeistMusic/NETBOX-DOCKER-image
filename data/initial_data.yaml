@@ -1,0 +1,286 @@
+########################################
+# MANUFACTURER
+########################################
+- model: dcim.manufacturer
+  pk: 1
+  fields:
+    name: Generic Manufacturer
+    slug: generic-manufacturer
+
+########################################
+# DEVICE ROLE (MPTT FIELDS INCLUDED)
+########################################
+- model: dcim.devicerole
+  pk: 1
+  fields:
+    name: Server
+    slug: server
+    color: ff0000
+    tree_id: 1
+    lft: 1
+    rght: 2
+    level: 0
+
+########################################
+# DEVICE TYPE
+########################################
+- model: dcim.devicetype
+  pk: 1
+  fields:
+    model: Generic Server
+    slug: generic-server
+    manufacturer: 1
+
+########################################
+# SITES
+########################################
+- model: dcim.site
+  pk: 1
+  fields:
+    name: MADRID
+    slug: madrid
+    status: active
+
+- model: dcim.site
+  pk: 2
+  fields:
+    name: BARCELONA
+    slug: barcelona
+    status: active
+
+########################################
+# RACKS (2 PER SITE, ONE EMPTY PER SITE)
+########################################
+- model: dcim.rack
+  pk: 1
+  fields:
+    name: MAD-RACK-01
+    site: 1
+    status: active
+
+- model: dcim.rack
+  pk: 2
+  fields:
+    name: MAD-RACK-02
+    site: 1
+    status: active
+
+- model: dcim.rack
+  pk: 3
+  fields:
+    name: BCN-RACK-01
+    site: 2
+    status: active
+
+- model: dcim.rack
+  pk: 4
+  fields:
+    name: BCN-RACK-02
+    site: 2
+    status: active
+
+########################################
+# DEVICES (10 PER SITE, 1 RACK EMPTY PER SITE)
+########################################
+
+# --- MADRID DEVICES (RACK 1) ---
+- model: dcim.device
+  pk: 1
+  fields:
+    name: MAD-DEV-01
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: active
+
+- model: dcim.device
+  pk: 2
+  fields:
+    name: MAD-DEV-02
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: offline
+
+- model: dcim.device
+  pk: 3
+  fields:
+    name: MAD-DEV-03
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: planned
+
+- model: dcim.device
+  pk: 4
+  fields:
+    name: MAD-DEV-04
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: active
+
+- model: dcim.device
+  pk: 5
+  fields:
+    name: MAD-DEV-05
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: offline
+
+- model: dcim.device
+  pk: 6
+  fields:
+    name: MAD-DEV-06
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: active
+
+- model: dcim.device
+  pk: 7
+  fields:
+    name: MAD-DEV-07
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: planned
+
+- model: dcim.device
+  pk: 8
+  fields:
+    name: MAD-DEV-08
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: active
+
+- model: dcim.device
+  pk: 9
+  fields:
+    name: MAD-DEV-09
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: offline
+
+- model: dcim.device
+  pk: 10
+  fields:
+    name: MAD-DEV-10
+    site: 1
+    rack: 1
+    device_type: 1
+    role: 1
+    status: active
+
+# --- BARCELONA DEVICES (RACK 3) ---
+- model: dcim.device
+  pk: 11
+  fields:
+    name: BCN-DEV-01
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: active
+
+- model: dcim.device
+  pk: 12
+  fields:
+    name: BCN-DEV-02
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: offline
+
+- model: dcim.device
+  pk: 13
+  fields:
+    name: BCN-DEV-03
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: planned
+
+- model: dcim.device
+  pk: 14
+  fields:
+    name: BCN-DEV-04
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: active
+
+- model: dcim.device
+  pk: 15
+  fields:
+    name: BCN-DEV-05
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: offline
+
+- model: dcim.device
+  pk: 16
+  fields:
+    name: BCN-DEV-06
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: active
+
+- model: dcim.device
+  pk: 17
+  fields:
+    name: BCN-DEV-07
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: planned
+
+- model: dcim.device
+  pk: 18
+  fields:
+    name: BCN-DEV-08
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: active
+
+- model: dcim.device
+  pk: 19
+  fields:
+    name: BCN-DEV-09
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: offline
+
+- model: dcim.device
+  pk: 20
+  fields:
+    name: BCN-DEV-10
+    site: 2
+    rack: 3
+    device_type: 1
+    role: 1
+    status: active

@@ -9,6 +9,7 @@ No system-wide installation of Docker Engine or Docker Compose is required, as D
 
 ### Prerequisites
 
+- Python 3.12
 - Docker-desktop [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/) (Windows / macOS / Linux)
 - Git
 
@@ -25,12 +26,16 @@ From the repository root, run:
 ```
 docker compose pull
 docker compose up
+docker compose down
+docker compose build --no-cache
+docker compose up -d
 ```
 
 This will:
 
 - Pull the required NetBox images
 - Start NetBox and its dependencies (PostgreSQL, Redis)
+- ```docker compose build --no-cache``` This step is required only the first time, or when Python dependencies change
 
 Note:
 On the first startup, the NetBox container may temporarily appear as "unhealthy"
@@ -72,18 +77,27 @@ The script demonstrates:
 
 ### Initial Data Setup
 
-For the purpose of this exercise, initial data (Sites, Racks, Devices and admin user)
-is created manually in the NetBox UI after deployment.
+For this exercise, the initial dataset (Sites, Racks, Devices, Device Roles and Device Types) can be preloaded automatically using a YAML fixture.
 
-The dataset used for testing follows the exercise requirements:
+- This approach provides a reproducible and consistent dataset across environments without requiring manual input through the NetBox UI.
+- The fixture is located at: ```data/initial_data.yaml```
+
+To load the initial data, run:
+
+```
+docker compose exec netbox python manage.py loaddata /opt/netbox/data/initial_data.yaml
+```
+
+The dataset created by the fixture follows the exercise requirements:
 
 - 2 Sites
 - 4 Racks (2 per Site)
-- 20 Devices (10 per Site adding roll and device type)
+- 20 Devices (10 per Site)
 - One empty Rack per Site
+- Device Role and Device Type defined
 - Status assigned to each Device
 
-This approach avoids coupling the repository to a specific database state and ensures reproducibility across environments.
+Using a declarative fixture avoids coupling the repository to a specific database state while enabling a predictable setup for review and testing.
 
 ### Requirements Covered
 
@@ -125,16 +139,9 @@ scripts/device_inventory_report.py
 1. Start NetBox using Docker Compose
 2. Log in to the NetBox UI
 3. Navigate to: ```http://localhost:8000/extras/scripts/```
-4. Add script and select ```device_inventory_report.py``` on ```scripts``` folder
-6. This step is required only the first time, or when Python dependencies change.
-From the repository root, run:
-```
-docker compose down
-docker compose build --no-cache
-docker compose up -d
-```
-7. Run the Script and Choose: ```Device Status (required) → Site or Rack (at least one required)```
-8. Execute the script
+4. Add the script and select ```device_inventory_report.py``` in the ```scripts``` folder located at the repository root
+5. Run the Script and Choose: ```Device Status (required) → Site or Rack (at least one required)```
+6. Execute the script
 
 ### Output of Exercise 1
 
@@ -159,6 +166,15 @@ The script supports:
 
 The script interacts exclusively with the NetBox API and does not depend on NetBox internals.
 
+### Dependencies
+
+- The API script requires the Python ```requests``` library.
+
+If not already installed, it can be installed using:
+```
+pip install requests
+```
+
 ### Testing
 
 Unit tests are implemented using Python's built-in ```unittest``` framework.
@@ -172,21 +188,25 @@ Run tests using:
 python -m unittest discover tests -v
 ```
 
+Expected output:
+```
+test_api_error_handling (test_device_count.TestDeviceCountAPI.test_api_error_handling)
+Test API error handling when a non-200 response is returned. ... ok
+test_get_devices_with_status (test_device_count.TestDeviceCountAPI.test_get_devices_with_status)
+Test retrieving devices filtered by status using mocked API response. ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+OK
+```
+
 ### How to Execute Exercise 2
 
 Prerequisites
 
 - NetBox running and accessible
-- A valid NetBox API token: [http://localhost:8000/user/api-tokens/](http://localhost:8000/user/api-tokens/)
-
-Dependencies
-
-- The API script requires the Python ```requests``` library.
-
-If not already installed, it can be installed using:
-```
-pip install requests
-```
+- A valid NetBox API token (create one at: ```http://localhost:8000/user/api-tokens/add/```)
 
 ### API Endpoint Used
 

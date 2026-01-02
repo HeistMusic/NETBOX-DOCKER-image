@@ -19,6 +19,7 @@ services:
       - netbox-reports-files:/opt/netbox/netbox/reports:rw
       - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
       - ./reports_export:/opt/netbox/netbox/reports_root:rw
+      - ./data:/opt/netbox/data:ro
 
   netbox-worker:
     <<: *netbox
